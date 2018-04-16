@@ -5,7 +5,7 @@ using UnityEngine;
 public class GuardBehaviour : MonoBehaviour 
 {
 	public float speed = 5;
-	public float waitTime = 0.5;
+	public float waitTime = 0.5f;
 	public float turnSpeed = 90;
 	public Transform pathHolder;
 	void Start () // Use this for initialization
@@ -38,6 +38,7 @@ public class GuardBehaviour : MonoBehaviour
 				yield return new WaitForSeconds (waitTime);
 				yield return StartCoroutine (TurnToFace (targetWaypoint));
 			}
+            yield return null;
 		}
 	}
 	IEnumerator TurnToFace(Vector3 lookTarget)
@@ -48,6 +49,7 @@ public class GuardBehaviour : MonoBehaviour
 		{
 			float angle = Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetAngle, turnSpeed * Time.deltaTime);
 			transform.eulerAngles = Vector3.up * angle;
+            yield return null;
 		}
 	}
 	void OnDrawGizmos()
