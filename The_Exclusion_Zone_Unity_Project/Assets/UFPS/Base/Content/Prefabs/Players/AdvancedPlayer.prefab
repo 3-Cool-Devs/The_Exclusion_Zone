@@ -621,7 +621,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -645,7 +645,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!82 &8200008
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1896,11 +1896,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 192802a31ffc6c245af2135abcd4361d, type: 3}
     - {fileID: 8300000, guid: f2ee8603401ff8144ba61adeeec9d9d9, type: 3}
     Textures:
-    - {fileID: 2800000, guid: e6c425fe3f067e340bac90e63e1f2f0b, type: 3}
-    - {fileID: 2800000, guid: 40d893ad9d95dc44bbcdc06ec634d38c, type: 3}
-    - {fileID: 2800000, guid: 2a1f4c12bcff5bd449e153ab06498e77, type: 3}
-    - {fileID: 2800000, guid: cf0725f27ae887048b8829b4cd66949b, type: 3}
-    - {fileID: 2800000, guid: c43c3743c17f60e4797c9b2fa52b25ec, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - RandomPitch: {x: 1, y: 1.5}
     Foldout: 0
     SoundsFoldout: 0
@@ -1916,7 +1916,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3bc9cd135e66eb3489c9ab7ae11e019e, type: 3}
     - {fileID: 8300000, guid: eddbaebff71e9f140b876cd8cdfa2e8a, type: 3}
     Textures:
-    - {fileID: 2800000, guid: 62e0fabbceb643d418028eead4649819, type: 3}
+    - {fileID: 0}
   - RandomPitch: {x: 1, y: 1.5}
     Foldout: 1
     SoundsFoldout: 0
@@ -1932,7 +1932,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ed418c805e2f4394cba716350bc6ca3b, type: 3}
     - {fileID: 8300000, guid: 2c74650b5b0bc174382ce087a7f9bffd, type: 3}
     Textures:
-    - {fileID: 2800000, guid: 14ad3be5b281d254485f73e09ceb02dc, type: 3}
+    - {fileID: 0}
 --- !u!114 &11400042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2116,7 +2116,7 @@ MonoBehaviour:
   SpawnOnAwake: 0
   SpawnSound: {fileID: 8300000, guid: c6ffb5ccbd00a114494143e33e747a05, type: 3}
   SpawnFXPrefabs: []
-  helpbox: 166
+  helpbox: 188
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1
