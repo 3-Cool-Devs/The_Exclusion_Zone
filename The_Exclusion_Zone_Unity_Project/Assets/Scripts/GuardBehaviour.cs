@@ -1,24 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GuardBehaviour : MonoBehaviour 
 {
+	public NavMeshAgent agent;
+
 	public float speed = 5;
 	public float waitTime = 0.5f;
 	public float turnSpeed = 90;
+
 	public Transform pathHolder;
+
 	public Light spotLight;
 	public float viewDistance;
 	private float viewAngle;
 	public LayerMask viewMask;
+
 	private Transform player;
+	private Vector3 playerV3;
 	private Color originalSpotLightColour;
-	void Start () // Use this for initialization
+	private bool patrol;
+	void Awake()
 	{
+		agent = GetComponent<NavMeshAgent>();
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		viewAngle = spotLight.spotAngle;
 		originalSpotLightColour = spotLight.color;
+	}
+	public void Start () // Use this for initialization
+	{
 		Vector3[] waypoints = new Vector3[pathHolder.childCount];
 		for (int i = 0; i < waypoints.Length; i++) 
 		{
@@ -29,15 +41,23 @@ public class GuardBehaviour : MonoBehaviour
 	}
 	void Update () // Update is called once per frame
 	{
-		if (CanSeePlayer ()) {
-			spotLight.color = Color.red;
-		} 
-		else 
-		{
-			spotLight.color = originalSpotLightColour;
-		}
+
 	}
-	bool CanSeePlayer()
+	IEnumerator MoveToLocation(Vector3 targetPoint)
+	{
+		agent.destination = targetPoint;
+		agent.isStopped = false;
+		Vector3[] waypoints = new Vector3[pathHolder.childCount];
+		for (int i = 0; i < waypoints.Length; i++) 
+		{
+			waypoints [i] = pathHolder.GetChild (i).position;
+			waypoints [i] = new Vector3 (waypoints [i].x, transform.position.y, waypoints [i].z);
+		}
+		yield return StartCoroutine (FollowPath (waypoints));
+		yield return false;
+
+	}
+	IEnumerator CanSeePlayer()
 	{
 		if(Vector3.Distance(transform.position,player.position) < viewDistance)
 		{
@@ -47,14 +67,16 @@ public class GuardBehaviour : MonoBehaviour
 			{
 				if(!Physics.Linecast(transform.position,player.position, viewMask))
 				{
-					return true;
+					spotLight.color = Color.red;
+					yield return StartCoroutine (MoveToLocation (dirToPlayer));
 				}
 			}
 		}
-		return false;
+		yield return false;
 	}
 	IEnumerator FollowPath(Vector3[] waypoints)
 	{
+		spotLight.color = originalSpotLightColour;
 		transform.position = waypoints [0];
 		int targetWaypointIndex = 1;
 		Vector3 targetWaypoint = waypoints [targetWaypointIndex];
