@@ -12,19 +12,18 @@ public class DemonBehaviour : MonoBehaviour
     public Light spotLight;
     private Color originalSpotLightColour;
     //
-    public Vector3 demonDirection;
-    public float demonAngle;
+	private Vector3 demonDirection;
+	private float demonAngle;
     public float demonRotation = 0.1f;
     public float demonNoticeRange = 10f;
     public float demonChaseRange = 5f;
     public float demonNoticeFOV;
     public float demonSpeed = 1.5f;
     public float demonChaseSpeed = 2f;
-    public float angleBetweenDemonAndPlayer;
+	private float angleBetweenDemonAndPlayer;
     //
     public float wpAccuracy = 0f;
-    public Vector3 dirToPlayer;
-
+	//
     public int currentWP = 0;
     //
     public string state = "patrol";
@@ -32,7 +31,6 @@ public class DemonBehaviour : MonoBehaviour
     public GameObject[] waypoints;
     void Awake()
     {
-        dirToPlayer = (player.position - transform.position).normalized;
         originalSpotLightColour = spotLight.color;
         demonNoticeFOV =  spotLight.spotAngle;
     }
@@ -47,13 +45,14 @@ public class DemonBehaviour : MonoBehaviour
     }
 	void Update () // Update is called once per frame
     {
-        DemonFOV();
+        DemonPatrol();
+		DemonChase ();
 	}
-    void DemonFOV()
+    public void DemonPatrol()
     {
-        demonDirection = player.position - this.transform.position;
-        demonDirection.y = 0;
-        demonAngle = Vector3.Angle(demonDirection, this.transform.forward);
+        demonDirection = player.position - this.transform.position; // distance between the player and the demon
+        demonDirection.y = 0; 
+        demonAngle = Vector3.Angle(demonDirection, this.transform.forward); // The angle 
         if (state == "patrol" && waypoints.Length > 0)
         {
             demonDirection.y = 0;
@@ -71,30 +70,36 @@ public class DemonBehaviour : MonoBehaviour
             this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(demonDirection), demonRotation * Time.deltaTime);
             this.transform.Translate(0, 0, Time.deltaTime * demonSpeed);
         }
-        if (Vector3.Distance(player.position, this.transform.position) < demonNoticeRange && (demonAngle < demonNoticeFOV || state == "pursuing"))
-        {
-            if (!Physics.Linecast(transform.position, player.position, viewMask))
-            {
-                state = "pursuing";
-                this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(demonDirection), demonRotation * Time.deltaTime);
-                if (demonDirection.magnitude > demonChaseRange)
-                {
-                    this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
-                }
-            }
-        }
-        //if (angleBetweenDemonAndPlayer < demonNoticeFOV / 2f)
-        //{
-            //if (!Physics.Linecast(transform.position, player.position, viewMask))
-            //{
-                //spotLight.color = Color.red;
-            //}
-        //}
-        else
-        {
-            state = "patrol";
-        }
     }
+	public void DemonChase ()
+	{
+		if (Vector3.Distance(player.position, this.transform.position) < demonNoticeRange && (demonAngle < demonNoticeFOV || state == "pursuing"))
+		{
+			if (!Physics.Linecast(transform.position, player.position, viewMask))// ||  )
+			{
+				state = "pursuing";
+				this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(demonDirection), demonRotation * Time.deltaTime);
+				if (demonDirection.magnitude < demonChaseRange)
+				{
+					this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+				}
+				if (demonDirection.magnitude > demonChaseRange)
+				{
+					StartCoroutine (ContinuePursue ());
+					this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+				}
+			}
+		}
+		else
+		{
+			state = "patrol";
+		}
+	} 
+	IEnumerator ContinuePursue()
+	{
+		yield return new WaitForSeconds (3);
+		state = "patrol";
+	}
     void OnDrawGizmos()
     {
         Vector3 startPosition = pathHolder.GetChild(0).position;
