@@ -29,6 +29,7 @@ public class DemonBehaviour : MonoBehaviour
     public string state = "patrol";
     //
     public GameObject[] waypoints;
+    public UIBehaviour uiBehav;
     void Awake()
     {
         originalSpotLightColour = spotLight.color;
@@ -50,6 +51,7 @@ public class DemonBehaviour : MonoBehaviour
 	}
     public void DemonPatrol()
     {
+        uiBehav.hasBeenSpotted = false;
         demonDirection = player.position - this.transform.position; // distance between the player and the demon
         demonDirection.y = 0; 
         demonAngle = Vector3.Angle(demonDirection, this.transform.forward); // The angle 
@@ -78,15 +80,16 @@ public class DemonBehaviour : MonoBehaviour
 			if (!Physics.Linecast(transform.position, player.position, viewMask))// ||  )
 			{
 				state = "pursuing";
+                uiBehav.hasBeenSpotted = true;
 				this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(demonDirection), demonRotation * Time.deltaTime);
 				if (demonDirection.magnitude < demonChaseRange)
 				{
 					this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
 				}
-				if (demonDirection.magnitude > demonChaseRange)
+				else if (demonDirection.magnitude > demonChaseRange)
 				{
 					StartCoroutine (ContinuePursue ());
-					this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+					//this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
 				}
 			}
 		}
