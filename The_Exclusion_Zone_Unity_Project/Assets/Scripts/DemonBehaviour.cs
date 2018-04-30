@@ -12,7 +12,7 @@ public class DemonBehaviour : MonoBehaviour
     public Light spotLight;
     private Color originalSpotLightColour;
     //
-	private Vector3 demonDirection;
+	private Vector3 direction;
 	private float demonAngle;
     public float demonRotation = 0.1f;
     public float demonNoticeRange = 10f;
@@ -51,13 +51,14 @@ public class DemonBehaviour : MonoBehaviour
 	}
     public void DemonPatrol()
     {
+		//state = "patrol";
         uiBehav.hasBeenSpotted = false;
-        demonDirection = player.position - this.transform.position; // distance between the player and the demon
-        demonDirection.y = 0; 
-        demonAngle = Vector3.Angle(demonDirection, this.transform.forward); // The angle 
+        direction = player.position - this.transform.position; // distance between the player and the demon
+        direction.y = 0; 
+        demonAngle = Vector3.Angle(direction, this.transform.forward); // The angle 
         if (state == "patrol" && waypoints.Length > 0)
         {
-            demonDirection.y = 0;
+            direction.y = 0;
             if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) < wpAccuracy)
             {
                 //currentWP = Random.Range(0, waypoints.Length); // randomise the waypoints that the demons follow
@@ -67,42 +68,54 @@ public class DemonBehaviour : MonoBehaviour
                     currentWP = 0;
                 }
             }
-            demonDirection = waypoints[currentWP].transform.position - transform.position;
-            demonDirection.y = 0;
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(demonDirection), demonRotation * Time.deltaTime);
+            direction = waypoints[currentWP].transform.position - transform.position;
+            direction.y = 0;
+            this.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), demonRotation * Time.deltaTime);
             this.transform.Translate(0, 0, Time.deltaTime * demonSpeed);
         }
     }
 	public void DemonChase ()
 	{
-		if (Vector3.Distance(player.position, this.transform.position) < demonNoticeRange && (demonAngle < demonNoticeFOV || state == "pursuing"))
+		if (Vector3.Distance (player.position, this.transform.position) < demonNoticeRange && (demonAngle < demonNoticeFOV || state == "pursuing") && !Physics.Linecast (transform.position, player.position, viewMask)) 
 		{
-			if (!Physics.Linecast(transform.position, player.position, viewMask))// ||  )
+			state = "pursuing";
+			uiBehav.hasBeenSpotted = true;
+			Vector3 direction = player.position - this.transform.position;
+			direction.y = 0; 
+			this.transform.rotation = Quaternion.Slerp (this.transform.rotation, Quaternion.LookRotation (direction), demonRotation * Time.deltaTime);
+			if (direction.magnitude <= demonNoticeRange) 
 			{
-				state = "pursuing";
-                uiBehav.hasBeenSpotted = true;
-				this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(demonDirection), demonRotation * Time.deltaTime);
-				if (demonDirection.magnitude < demonChaseRange)
+				this.transform.Translate (0, 0, demonChaseSpeed * Time.deltaTime);
+				if (direction.magnitude < wpAccuracy) 
 				{
-					this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
-				}
-				else if (demonDirection.magnitude > demonChaseRange)
-				{
-					StartCoroutine (ContinuePursue ());
-					//this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+					currentWP = FindClosestWP();
+					state = "patrol";
 				}
 			}
-		}
-		else
+		} 
+		else 
 		{
 			state = "patrol";
 		}
-	} 
-	IEnumerator ContinuePursue()
-	{
-		yield return new WaitForSeconds (3);
-		state = "patrol";
 	}
+	public int FindClosestWP()
+	{
+		if (waypoints.Length == 0) 
+		{
+			return -1;
+		}
+		int closest = 0;
+		float lastDist = Vector3.Distance(this.transform.position, waypoints[0].transform.position);
+		for(int i = 1; i < waypoints.Length; i++)
+		{
+			float thisDist = Vector3.Distance(this.transform.position, waypoints[i].transform.position);
+			if(lastDist > thisDist && i != currentWP)
+			{
+				closest = i;
+			}
+		}
+		return closest;
+	} 
     void OnDrawGizmos()
     {
         Vector3 startPosition = pathHolder.GetChild(0).position;
