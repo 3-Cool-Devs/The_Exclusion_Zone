@@ -13,7 +13,7 @@ public class DemonBehaviour : MonoBehaviour
     private Color originalSpotLightColour;
     //
 	private Vector3 direction;
-	private float demonAngle;
+	private float angle;
     public float demonRotation = 0.1f;
     public float demonNoticeRange = 10f;
     public float demonChaseRange = 5f;
@@ -23,12 +23,14 @@ public class DemonBehaviour : MonoBehaviour
 	private float angleBetweenDemonAndPlayer;
     //
     public float wpAccuracy = 0f;
-	//
     public int currentWP = 0;
     //
-    public string state = "patrol";
+    public bool isChasing = false;
+    public bool isPatroling = true;
+    public bool hasChased = false;
     //
     public GameObject[] waypoints;
+    List<Transform> path = new List<Transform>();
     public UIBehaviour uiBehav;
     void Awake()
     {
@@ -51,12 +53,17 @@ public class DemonBehaviour : MonoBehaviour
 	}
     public void DemonPatrol()
     {
-		//state = "patrol";
+        isPatroling = true;
         uiBehav.hasBeenSpotted = false;
         direction = player.position - this.transform.position; // distance between the player and the demon
         direction.y = 0; 
-        demonAngle = Vector3.Angle(direction, this.transform.forward); // The angle 
-        if (state == "patrol" && waypoints.Length > 0)
+        angle = Vector3.Angle(direction, this.transform.forward); // The angle
+        if (direction.magnitude<wpAccuracy && hasChased == true)
+        {
+            currentWP = FindClosestWP();
+            hasChased = false;
+        }
+        if (isPatroling == true && waypoints.Length > 0)
         {
             direction.y = 0;
             if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) < wpAccuracy)
@@ -76,28 +83,26 @@ public class DemonBehaviour : MonoBehaviour
     }
 	public void DemonChase ()
 	{
-		if (Vector3.Distance (player.position, this.transform.position) < demonNoticeRange && (demonAngle < demonNoticeFOV || state == "pursuing") && !Physics.Linecast (transform.position, player.position, viewMask)) 
-		{
-			state = "pursuing";
-			uiBehav.hasBeenSpotted = true;
-			Vector3 direction = player.position - this.transform.position;
-			direction.y = 0; 
-			this.transform.rotation = Quaternion.Slerp (this.transform.rotation, Quaternion.LookRotation (direction), demonRotation * Time.deltaTime);
-			if (direction.magnitude <= demonNoticeRange) 
-			{
-				this.transform.Translate (0, 0, demonChaseSpeed * Time.deltaTime);
-				if (direction.magnitude < wpAccuracy) 
-				{
-					currentWP = FindClosestWP();
-					state = "patrol";
-				}
-			}
-		} 
-		else 
-		{
-			state = "patrol";
-		}
-	}
+        if (Vector3.Distance(player.position, this.transform.position) < demonNoticeRange && (angle < demonNoticeFOV || isChasing == true) && !Physics.Linecast(transform.position, player.position, viewMask))
+        {
+            isPatroling = false;
+            isChasing = true;
+            uiBehav.hasBeenSpotted = true;
+            Vector3 direction = player.position - this.transform.position;
+            direction.y = 0;
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), demonRotation * Time.deltaTime);
+            this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+            if (Vector3.Distance(player.position, this.transform.position) > demonNoticeRange && (angle < demonNoticeFOV) && !Physics.Linecast(transform.position, player.position, viewMask) && isChasing == true)
+            {
+                hasChased = true;
+                isChasing = false;
+            }
+        }
+        else
+        {
+            isChasing = false;
+        }
+    }
 	public int FindClosestWP()
 	{
 		if (waypoints.Length == 0) 
