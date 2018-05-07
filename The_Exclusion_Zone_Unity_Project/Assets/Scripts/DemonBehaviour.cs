@@ -86,7 +86,6 @@ public class DemonBehaviour : MonoBehaviour
         {
             isPatroling = false;
             isChasing = true;
-			//hasChased = true;
             uiBehav.hasBeenSpotted = true;
             Vector3 direction = player.position - this.transform.position;
             direction.y = 0;
@@ -96,6 +95,7 @@ public class DemonBehaviour : MonoBehaviour
 		//if (Vector3.Distance(player.position, this.transform.position) > demonNoticeRange && (angle > demonNoticeFOV) && !Physics.Linecast(transform.position, player.position, viewMask) || isChasing == true)
 		//{
 			//isChasing = false;
+			//hasChased = true;
 			//uiBehav.hasBeenSpotted = false;
 			//StartCoroutine (ContinueChase());
 		//}
