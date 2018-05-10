@@ -6,44 +6,43 @@ using UnityEngine;
 
 public class UIBehaviour : MonoBehaviour
 {
-	public float health = 100;
-    public bool hasBeenSpotted = false;
-	public bool hasKey = false;
-	public Text healthText;
-    public Text detectionText;
-	public Text hasKeyText;
+	public float health = 100; // the health of the player
+    public bool hasBeenSpotted = false; // a bool that tells the UI if you have been spotted or not
+	public bool hasKey = false; // A bool that tells the UI if you have the key or not 
+	public Text healthText; // the text for the health
+	public Text detectionText; // the text for if you have been detected
+	public Text hasKeyText; // the text if you have the key
 	public GameObject player; 
 	public Collider playerCol;
-	public DemonBehaviour DB;
+	public DemonBehaviour DB; // variable for the demon script
 	void Start () // Use this for initialization
     {
-		healthText.text = "Health:" + health.ToString();
+		healthText.text = "Health:" + health.ToString(); // sets the health in the start frame to the health
 		hasKey = false;
 	}
 	void Update () // Update is called once per frame
     {
 		HasOrNotKey ();
 		HasSpottedOrNot ();
+		if (health < 0) 
+		{
+			SceneManager.LoadScene("game");
+		}
 	}
-	public void HasSpottedOrNot()
+	public void HasSpottedOrNot() // function that controls the health and damage that the player gets if he is in the FOV of the demon
 	{
 		healthText.text = "Health:" + health.ToString("0");
 		if (hasBeenSpotted == false)
 		{
-			detectionText.text = "Hidden";
+			detectionText.text = "Safe";
 		}
 		if (hasBeenSpotted == true)
 		{
 			detectionText.text = "Detected";
-			PlayerDamage ();
-		}
-		if (health == 0) 
-		{
-			health = 100;
-
+			health -= DB.demonDamage * Time.deltaTime ;
 		}
 	}
-	public void HasOrNotKey()
+	public void HasOrNotKey() // function that controls the UI elements that tell you if you have the key or not 
 	{
 		if(hasKey == false)
 		{
@@ -53,10 +52,6 @@ public class UIBehaviour : MonoBehaviour
 		{
 			hasKeyText.text = "Has Key";
 		}
-	}
-	public void PlayerDamage()
-	{
-		health -= DB.demonDamage * Time.deltaTime ;
 	}
 }
 

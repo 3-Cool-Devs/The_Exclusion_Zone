@@ -8,10 +8,10 @@ public class DemonBehaviour : MonoBehaviour
     public Transform head;
     public Transform pathHolder;
     public LayerMask viewMask;
-    //
+    //variables that the demons uses to be aware of the players position
     public Light spotLight;
     private Color originalSpotLightColour;
-    //
+    // variables the controlls the demons behaviour
 	private Vector3 direction;
 	public Vector3 lastSighting;
 	private float angle;
@@ -23,21 +23,17 @@ public class DemonBehaviour : MonoBehaviour
     public float demonChaseSpeed = 2f;
 	public float demonDamage = 5f ;
 	private float angleBetweenDemonAndPlayer;
-    //
+    // variables that the waypoints uses
     public float wpAccuracy = 0f;
+	public GameObject[] waypoints;
     public int currentWP = 0;
-    //
+    // variables that toggle demon behaviour
     public bool isChasing = false;
 	public bool isLooking = false;
     public bool isPatroling = true;
     public bool hasChased = false;
-    //
-    public GameObject[] waypoints;
+    // refreneces to other scripts
     public UIBehaviour uiBehav;
-    void Awake()
-    {
-        originalSpotLightColour = spotLight.color;
-    }
     void Start () // Use this for initialization
     {
         Vector3[] waypoints = new Vector3[pathHolder.childCount];
@@ -52,24 +48,24 @@ public class DemonBehaviour : MonoBehaviour
         DemonPatrol();
 		DemonChase ();
 	}
-    public void DemonPatrol()
+    public void DemonPatrol() // the demons patrols using a predetermined path
     {
         direction = player.position - this.transform.position; // distance between the player and the demon
         direction.y = 0; 
         angle = Vector3.Angle(direction, this.transform.forward); // The angle
-		if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) > wpAccuracy && hasChased == true)
+		if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) > wpAccuracy && hasChased == true) // if the waypoint is greater that the waypoint accracy and if the bool hasChased == true it searchs for the nearest waypoint
         {
             currentWP = FindClosestWP();
-            hasChased = false;
+            hasChased = false; // turns off so it only uses it once 
         }
-        if (isPatroling == true && waypoints.Length > 0)
+        if (isPatroling == true && waypoints.Length > 0) // the partoling code that moves the demons to the different waypoints
         {
             direction.y = 0;
             if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) < wpAccuracy)
             {
                 //currentWP = Random.Range(0, waypoints.Length); // randomise the waypoints that the demons follow
                 currentWP++;
-                if (currentWP >= waypoints.Length)
+                if (currentWP >= waypoints.Length) // restarts the waypoint array if the currentWP is greater than the elements of the array
                 {
                     currentWP = 0;
                 }
@@ -80,7 +76,7 @@ public class DemonBehaviour : MonoBehaviour
             this.transform.Translate(0, 0, Time.deltaTime * demonSpeed);
         }
     }
-	public void DemonChase ()
+	public void DemonChase () // if the player is in range of the demon and in it's FOV and if not behind an obsticale it looks at you
 	{
 		Vector3 direction = player.position - this.transform.position;
 		direction.y = 0;
@@ -90,7 +86,7 @@ public class DemonBehaviour : MonoBehaviour
             isChasing = true;
             uiBehav.hasBeenSpotted = true;
 			this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), demonRotation * Time.deltaTime);
-			if(direction.magnitude < demonChaseRange)
+			if(direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
 			{
 				hasChased = true;
 				this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
@@ -110,7 +106,7 @@ public class DemonBehaviour : MonoBehaviour
 			uiBehav.hasBeenSpotted = false;
 		}
 	}
-	public int FindClosestWP()
+	public int FindClosestWP() // the code finds the closest waypoint
 	{
 		if (waypoints.Length == 0) 
 		{
@@ -128,7 +124,7 @@ public class DemonBehaviour : MonoBehaviour
 		}
 		return closest;
 	} 
-    void OnDrawGizmos()
+    void OnDrawGizmos() // draws the spheres in the editors so we have a better idea of the path of the demon
     {
         Vector3 startPosition = pathHolder.GetChild(0).position;
         Vector3 previousPosition = startPosition;
