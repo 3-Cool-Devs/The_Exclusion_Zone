@@ -34,10 +34,12 @@ public class UIBehaviour : MonoBehaviour
 		if (hasBeenSpotted == true)
 		{
 			detectionText.text = "Detected";
+			health--;
 		}
 		if (health == 0) 
 		{
-			SceneManager.LoadScene ("Test Redo");
+			health = 100;
+			//SceneManager.LoadScene ("Test Redo");
 		}
 	}
 	void HasOrNotKey()
@@ -50,13 +52,6 @@ public class UIBehaviour : MonoBehaviour
 		{
 			hasKeyText.text = "Has Key";
 		}
-	}
-	void FixedUpdate()
-	{
-		//if(hasBeenSpotted == true)
-		//{
-			//health--;
-		//}
 	}
 }
 

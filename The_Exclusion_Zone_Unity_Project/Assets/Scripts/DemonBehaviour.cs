@@ -53,11 +53,10 @@ public class DemonBehaviour : MonoBehaviour
 	}
     public void DemonPatrol()
     {
-        uiBehav.hasBeenSpotted = false;
         direction = player.position - this.transform.position; // distance between the player and the demon
         direction.y = 0; 
         angle = Vector3.Angle(direction, this.transform.forward); // The angle
-        if (direction.magnitude < wpAccuracy && hasChased == true)
+		if (Vector3.Distance(waypoints[currentWP].transform.position, transform.position) > wpAccuracy && hasChased == true)
         {
             currentWP = FindClosestWP();
             hasChased = false;
@@ -82,20 +81,24 @@ public class DemonBehaviour : MonoBehaviour
     }
 	public void DemonChase ()
 	{
-		if (Vector3.Distance(player.position, this.transform.position) < demonNoticeRange && (angle > demonNoticeFOV ) && !Physics.Linecast(transform.position, player.position, viewMask) || isChasing == true)
+		Vector3 direction = player.position - this.transform.position;
+		direction.y = 0;
+		if (Vector3.Distance(player.position, this.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast(transform.position, player.position, viewMask)) //|| isChasing == true)
         {
             isPatroling = false;
             isChasing = true;
             uiBehav.hasBeenSpotted = true;
-            Vector3 direction = player.position - this.transform.position;
-            direction.y = 0;
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), demonRotation * Time.deltaTime);
-            this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+			this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), demonRotation * Time.deltaTime);
+			if(direction.magnitude > demonChaseRange)
+			{
+				hasChased = true;
+				this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+			}
         }
 		//if (Vector3.Distance(player.position, this.transform.position) > demonNoticeRange && (angle > demonNoticeFOV) && !Physics.Linecast(transform.position, player.position, viewMask) || isChasing == true)
 		//{
 			//isChasing = false;
-			//hasChased = true;
+			
 			//uiBehav.hasBeenSpotted = false;
 			//StartCoroutine (ContinueChase());
 		//}
@@ -106,11 +109,6 @@ public class DemonBehaviour : MonoBehaviour
 			uiBehav.hasBeenSpotted = false;
 		}
 	}
-	//IEnumerator ContinueChase()
-	//{
-		//yield return new WaitForSeconds (5f);
-		//this.transform.Translate(0, 0, Time.deltaTime * demonSpeed);
-	//}
 	public int FindClosestWP()
 	{
 		if (waypoints.Length == 0) 
@@ -118,7 +116,7 @@ public class DemonBehaviour : MonoBehaviour
 			return -1;
 		}
 		int closest = 0;
-		float lastDist = Vector3.Distance(this.transform.position, waypoints[0].transform.position);
+		float lastDist = Vector3.Distance(this.transform.position, waypoints[currentWP].transform.position);
 		for(int i = 1; i < waypoints.Length; i++)
 		{
 			float thisDist = Vector3.Distance(this.transform.position, waypoints[i].transform.position);
