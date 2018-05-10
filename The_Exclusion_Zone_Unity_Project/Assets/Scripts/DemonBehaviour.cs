@@ -21,6 +21,7 @@ public class DemonBehaviour : MonoBehaviour
     public float demonNoticeFOV;
     public float demonSpeed = 1.5f;
     public float demonChaseSpeed = 2f;
+	public float demonDamage = 5f ;
 	private float angleBetweenDemonAndPlayer;
     //
     public float wpAccuracy = 0f;
@@ -89,7 +90,7 @@ public class DemonBehaviour : MonoBehaviour
             isChasing = true;
             uiBehav.hasBeenSpotted = true;
 			this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), demonRotation * Time.deltaTime);
-			if(direction.magnitude > demonChaseRange)
+			if(direction.magnitude < demonChaseRange)
 			{
 				hasChased = true;
 				this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);

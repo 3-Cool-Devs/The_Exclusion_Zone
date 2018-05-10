@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UIBehaviour : MonoBehaviour
 {
-	public int health = 100;
+	public float health = 100;
     public bool hasBeenSpotted = false;
 	public bool hasKey = false;
 	public Text healthText;
@@ -14,6 +14,7 @@ public class UIBehaviour : MonoBehaviour
 	public Text hasKeyText;
 	public GameObject player; 
 	public Collider playerCol;
+	public DemonBehaviour DB;
 	void Start () // Use this for initialization
     {
 		healthText.text = "Health:" + health.ToString();
@@ -24,9 +25,9 @@ public class UIBehaviour : MonoBehaviour
 		HasOrNotKey ();
 		HasSpottedOrNot ();
 	}
-	void HasSpottedOrNot()
+	public void HasSpottedOrNot()
 	{
-		healthText.text = "Health:" + health.ToString();
+		healthText.text = "Health:" + health.ToString("0");
 		if (hasBeenSpotted == false)
 		{
 			detectionText.text = "Hidden";
@@ -34,15 +35,15 @@ public class UIBehaviour : MonoBehaviour
 		if (hasBeenSpotted == true)
 		{
 			detectionText.text = "Detected";
-			health--;
+			PlayerDamage ();
 		}
 		if (health == 0) 
 		{
 			health = 100;
-			//SceneManager.LoadScene ("Test Redo");
+
 		}
 	}
-	void HasOrNotKey()
+	public void HasOrNotKey()
 	{
 		if(hasKey == false)
 		{
@@ -52,6 +53,10 @@ public class UIBehaviour : MonoBehaviour
 		{
 			hasKeyText.text = "Has Key";
 		}
+	}
+	public void PlayerDamage()
+	{
+		health -= DB.demonDamage * Time.deltaTime ;
 	}
 }
 
