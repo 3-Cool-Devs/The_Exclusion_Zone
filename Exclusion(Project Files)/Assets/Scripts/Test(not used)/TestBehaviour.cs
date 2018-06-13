@@ -44,7 +44,7 @@ public class TestBehaviour : MonoBehaviour
 		if (direction.magnitude < accuarcyWP) 
 		{
 			path.Remove (path [currentWP]);
-			currentWP = FindClosestWP;
+			currentWP = FindClosestWP();
 		}
 	}
 	void Update () // Update is called once per frame
