@@ -13,7 +13,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -38,10 +38,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485753a31c65935428a47713e385e730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Demon: {fileID: 0}
+  Player: {fileID: 0}
   target: {fileID: 0}
+  waypoints: []
+  waypointRange: 3
+  waypointRotationSpeed: 1
+  waypointSpeed: 2
   chaseRotationSpeed: 2
   chaseSpeed: 5
-  waypointRange: 3
+  angle: 0
+  demonRotation: 0.1
+  demonNoticeRange: 10
+  demonChaseRange: 5
+  demonNoticeFOV: 0
+  demonSpeed: 1.5
+  demonChaseSpeed: 2
+  demonDamage: 5
+  angleBetweenDemonAndPlayer: 0
+  uiBehav: {fileID: 0}
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 0
+  currentWP: 0
 --- !u!114 &114856771296942434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,6 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf60deebcdc6f904d9c5f5c7fc20452e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Demon: {fileID: 0}
+  Player: {fileID: 0}
   target: {fileID: 0}
   waypoints:
   - {fileID: 0}
@@ -85,6 +106,21 @@ MonoBehaviour:
   waypointRange: 3
   waypointRotationSpeed: 3
   waypointSpeed: 2
+  chaseRotationSpeed: 2
+  chaseSpeed: 5
+  angle: 0
+  demonRotation: 0.1
+  demonNoticeRange: 10
+  demonChaseRange: 5
+  demonNoticeFOV: 60
+  demonSpeed: 1.5
+  demonChaseSpeed: 2
+  demonDamage: 5
+  angleBetweenDemonAndPlayer: 0
+  uiBehav: {fileID: 0}
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 256
   currentWP: 0
 --- !u!1101 &1101444275578856958
 AnimatorStateTransition:
@@ -92,7 +128,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: doesSee
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102161638957067498}
   m_Solo: 0

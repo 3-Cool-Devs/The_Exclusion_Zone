@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBehaviourBase : StateMachineBehaviour
+public class TestDemonBehaviour : MonoBehaviour 
 {
-    public GameObject Demon;
-    public GameObject Player;
+	public GameObject Player;
+	public Animator anim;
+	public GameObject Demon;
 	public Transform target;
 	public GameObject[] waypoints;
-    public float waypointRange = 3.0f;
-    public float waypointRotationSpeed = 1.0f;
-    public float waypointSpeed = 2.0f;
+	public float waypointRange = 3.0f;
+	public float waypointRotationSpeed = 1.0f;
+	public float waypointSpeed = 2.0f;
 	GameObject NPC;
 	public float chaseRotationSpeed = 2.0f;
 	public float chaseSpeed = 5.0f;
@@ -26,21 +27,24 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public UIBehaviour uiBehav;
 	public LayerMask viewMask;
 	public int currentWP;
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-        Demon = animator.gameObject;
-		waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
-		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
-		target = GetComponent<TestDemonBehaviour>().GetPlayer();
-        currentWP = 0;
-    }
-    void Start () // Use this for initialization
-    {
-		
+	public GameObject GetPlayer()
+	{
+		return Player;
 	}
+	void Start () // Use this for initialization
+	{
+		anim = GetComponent<Animator>();
+	}
+
 	void Update () // Update is called once per frame
-    {
-		
+	{
+		if (Vector3.Distance (target.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, target.position, viewMask)) 
+		{ 
+			anim.SetBool ("doesSee", true);
+		} 
+		else 
+		{
+			anim.SetBool ("doesSee", false);
+		}
 	}
 }

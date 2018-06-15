@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBehaviourFSMChase : StateMachineBehaviour
+public class TestBehaviourFSMChase : TestBehaviourBase
 {
     //private NavMeshAgent myAgent;
-    public Transform target;
+    
     //
-    GameObject NPC;
-    GameObject[] waypoints;
-    public float chaseRotationSpeed = 2.0f;
-    public float chaseSpeed = 5.0f;
-    public float waypointRange = 3.0f;
-    int currentWP;
     void Awake()
     {
         waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
@@ -28,33 +22,32 @@ public class TestBehaviourFSMChase : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        NPC = animator.gameObject;
-        currentWP = 0;
+		base.OnStateEnter (animator, stateInfo, layerIndex);
     }
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        if (waypoints.Length == 0) 
-        {
-                return;
-        }
-        if (Vector3.Distance (waypoints [currentWP].transform.position, NPC.transform.position) < waypointRange) 
-        {
-            currentWP++;
-            if(currentWP >= waypoints.Length)
-            {
-                currentWP = 0;
-            }
-        }
-        //myAgent.SetDestination (player.transform.position); or use this if on a navmesh
-        var direction = waypoints [currentWP].transform.position - NPC.transform.position;
-        NPC.transform.rotation = Quaternion.Slerp (NPC.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
-        NPC.transform.Translate (0, 0, Time.deltaTime * chaseSpeed);
+		if (Vector3.Distance (target.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, target.position, viewMask)) 
+		{
+			var direction = waypoints [currentWP].transform.position - Demon.transform.position;
+			direction.y = 0;
+			Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), waypointRotationSpeed * Time.deltaTime);
+			Demon.transform.Translate (0, 0, Time.deltaTime * waypointSpeed);
+			uiBehav.hasBeenSpotted = true;
+			if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
+			{ 
+				Demon.transform.Translate (0, 0, demonChaseSpeed * Time.deltaTime);
+			}
+		} 
+		else 
+		{
+
+		}
     }
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-	
+		uiBehav.hasBeenSpotted = false;
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

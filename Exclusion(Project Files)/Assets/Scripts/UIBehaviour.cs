@@ -14,7 +14,7 @@ public class UIBehaviour : MonoBehaviour
 	public Text hasKeyText; // the text if you have the key
 	public GameObject player; 
 	public Collider playerCol;
-	public DemonBehaviour DB; // variable for the demon script
+	public TestDemonBehaviour DB; // variable for the demon script
 	void Start () // Use this for initialization
     {
 		healthText.text = "Health:" + health.ToString(); // sets the health in the start frame to the health
