@@ -13228,9 +13228,9 @@ MonoBehaviour:
   Demon: {fileID: 652289230}
   waypoints: []
   waypointRange: 3
-  waypointRotationSpeed: 1
+  waypointRotationSpeed: 5
   waypointSpeed: 2
-  chaseRotationSpeed: 2
+  chaseRotationSpeed: 5
   chaseSpeed: 5
   angle: 0
   demonRotation: 0.1
@@ -28158,7 +28158,7 @@ MonoBehaviour:
   hasKeyText: {fileID: 130874713}
   player: {fileID: 1260085667}
   playerCol: {fileID: 1260085673}
-  DB: {fileID: 0}
+  DB: {fileID: 652289237}
 --- !u!4 &1474271758 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: debb145ece23b324a94fdfaa24449b8f, type: 3}

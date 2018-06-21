@@ -8,7 +8,8 @@ public class TestDemonBehaviour : MonoBehaviour
 	public Animator anim;
 	public GameObject Demon;
 	public GameObject[] waypoints;
-	public float waypointRange = 3.0f;
+    private Vector3 direction;
+    public float waypointRange = 3.0f;
 	public float waypointRotationSpeed = 1.0f;
 	public float waypointSpeed = 2.0f;
 	GameObject NPC;
@@ -36,8 +37,11 @@ public class TestDemonBehaviour : MonoBehaviour
     }
 	void Update () // Update is called once per frame
 	{
-		if (Vector3.Distance (Player.transform.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, Player.transform.position, viewMask)) 
-		{ 
+        direction = Player.transform.position - Demon.transform.position; // distance between the player and the demon
+        direction.y = 0;
+        angle = Vector3.Angle(direction, Demon.transform.forward); // The angle
+        if (Vector3.Distance (Player.transform.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, Player.transform.position, viewMask)) 
+		{
 			anim.SetBool ("doesSee", true);
             uiBehav.hasBeenSpotted = true;
         } 

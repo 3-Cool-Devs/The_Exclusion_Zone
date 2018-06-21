@@ -5,29 +5,29 @@ using UnityEngine;
 
 public class TestBehaviourPatrol : MonoBehaviour 
 {
-	private NavMeshAgent myAgent;
-	public Transform target;
+	//private NavMeshAgent myAgent;
+	//public Transform target;
 	//
-	GameObject NPC;
-	GameObject[] waypoints;
-	public float waypointRange = 3.0f; 
-	public float waypointRotationSpeed = 1.0f;
-	public float waypointSpeed = 2.0f;
-	public float chaseRotationSpeed = 2.0f;
-	public float chaseSpeed = 5.0f;
-	int currentWP;
-    private void Awake()
-    {
-        waypoints = GameObject.FindGameObjectsWithTag("waypoint");
-    }
-    void Start () // Use this for initialization
-	{
-		myAgent = GetComponent<NavMeshAgent> ();
-	}
-	void Update () // Update is called once per frame
-	{
-		myAgent.SetDestination (target.position);
-	}
+	//GameObject NPC;
+	//GameObject[] waypoints;
+	//public float waypointRange = 3.0f; 
+	//public float waypointRotationSpeed = 1.0f;
+	//public float waypointSpeed = 2.0f;
+	//public float chaseRotationSpeed = 2.0f;
+	//public float chaseSpeed = 5.0f;
+	//int currentWP;
+    //private void Awake()
+    //{
+        //waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+    //}
+    //void Start () // Use this for initialization
+	//{
+		//myAgent = GetComponent<NavMeshAgent> ();
+	//}
+	//void Update () // Update is called once per frame
+	//{
+		//myAgent.SetDestination (target.position);
+	//}
 	//override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	//{
 		//NPC = animator.gameObject;

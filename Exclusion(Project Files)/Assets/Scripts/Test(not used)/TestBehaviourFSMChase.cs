@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class TestBehaviourFSMChase : TestBehaviourBase
 {
-    //private NavMeshAgent myAgent;
-    
-    //
     void Awake()
     {
-        waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        
     }
     void Start() // Use this for initialization
     {
-        //myAgent = GetComponent<NavMeshAgent>();
+        
     }
     void Update() // Update is called once per frame
     {
-        //myAgent.SetDestination(target.position);
+
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -27,21 +24,14 @@ public class TestBehaviourFSMChase : TestBehaviourBase
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-		if (Vector3.Distance (Player.transform.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, Player.transform.position, viewMask)) 
-		{
-			var direction = waypoints [currentWP].transform.position - Demon.transform.position;
-			direction.y = 0;
-			Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), waypointRotationSpeed * Time.deltaTime);
-			Demon.transform.Translate (0, 0, Time.deltaTime * waypointSpeed);
-			if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
-			{ 
-				Demon.transform.Translate (0, 0, demonChaseSpeed * Time.deltaTime);
-			}
-		} 
-		else 
-		{
-
-		}
+        var direction = Player.transform.position - Demon.transform.position;
+        direction.y = 0;
+		Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
+        if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
+        {
+            Demon.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+            //myAgent.SetDestination(target.position);
+        }
     }
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 

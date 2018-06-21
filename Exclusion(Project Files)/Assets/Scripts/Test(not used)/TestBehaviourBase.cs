@@ -15,7 +15,7 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public float chaseRotationSpeed = 2.0f;
 	public float chaseSpeed = 5.0f;
 	public float angle;
-	public float demonRotation = 0.1f;
+    public float demonRotation = 0.1f;
 	public float demonNoticeRange = 10f;
 	public float demonChaseRange = 5f;
 	public float demonNoticeFOV;
@@ -32,14 +32,21 @@ public class TestBehaviourBase : StateMachineBehaviour
         Demon = animator.gameObject;
 		waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
 		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
-        currentWP = 0;
+
     }
     void Start () // Use this for initialization
     {
-
+        //myAgent = GetComponent<NavMeshAgent>();
+        currentWP = 0;
     }
-	void Update () // Update is called once per frame
+    void Update () // Update is called once per frame
     {
 		
 	}
+    void GetWaypoint()
+    {
+        GameObject[] waypoints = new GameObject [27];
+        waypoints[0] = FindObject<Waypoint>();
+
+    }
 }

@@ -1,30 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AI;
-using UnityEngine.Animations;
 using UnityEngine;
 
 public class TestBehaviourFSMPatrol : TestBehaviourBase
 {
-    
     void Awake()
     {
 		
     }
     void Start() // Use this for initialization
     {
-        //myAgent = GetComponent<NavMeshAgent>();
+        
     }
     void Update() // Update is called once per frame
     {
-        //myAgent.SetDestination(target.position);
+
     }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
 		base.OnStateEnter (animator, stateInfo, layerIndex);
 		Demon = animator.gameObject;
-        currentWP = 0;
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
