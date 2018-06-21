@@ -7,7 +7,6 @@ public class TestDemonBehaviour : MonoBehaviour
 	public GameObject Player;
 	public Animator anim;
 	public GameObject Demon;
-	public Transform target;
 	public GameObject[] waypoints;
 	public float waypointRange = 3.0f;
 	public float waypointRotationSpeed = 1.0f;
@@ -19,7 +18,7 @@ public class TestDemonBehaviour : MonoBehaviour
 	public float demonRotation = 0.1f;
 	public float demonNoticeRange = 10f;
 	public float demonChaseRange = 5f;
-	public float demonNoticeFOV;
+	public float demonNoticeFOV = 60;
 	public float demonSpeed = 1.5f;
 	public float demonChaseSpeed = 2f;
 	public float demonDamage = 5f;
@@ -34,17 +33,18 @@ public class TestDemonBehaviour : MonoBehaviour
 	void Start () // Use this for initialization
 	{
 		anim = GetComponent<Animator>();
-	}
-
+    }
 	void Update () // Update is called once per frame
 	{
-		if (Vector3.Distance (target.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, target.position, viewMask)) 
+		if (Vector3.Distance (Player.transform.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast (Demon.transform.position, Player.transform.position, viewMask)) 
 		{ 
 			anim.SetBool ("doesSee", true);
-		} 
+            uiBehav.hasBeenSpotted = true;
+        } 
 		else 
 		{
 			anim.SetBool ("doesSee", false);
-		}
+            uiBehav.hasBeenSpotted = false;
+        }
 	}
 }

@@ -23,22 +23,21 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public float demonChaseSpeed = 2f;
 	public float demonDamage = 5f;
 	public float angleBetweenDemonAndPlayer;
-	public UIBehaviour uiBehav;
 	public LayerMask viewMask;
 	public int currentWP;
+    //public NavMeshAgent myAgent;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
         Demon = animator.gameObject;
 		waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
 		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
-		target = GetComponent<TestDemonBehaviour>().GetPlayer();
         currentWP = 0;
     }
     void Start () // Use this for initialization
     {
-		
-	}
+
+    }
 	void Update () // Update is called once per frame
     {
 		

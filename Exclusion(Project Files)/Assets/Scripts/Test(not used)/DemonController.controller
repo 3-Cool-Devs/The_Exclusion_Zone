@@ -51,7 +51,7 @@ MonoBehaviour:
   demonRotation: 0.1
   demonNoticeRange: 10
   demonChaseRange: 5
-  demonNoticeFOV: 0
+  demonNoticeFOV: 60
   demonSpeed: 1.5
   demonChaseSpeed: 2
   demonDamage: 5
@@ -59,7 +59,7 @@ MonoBehaviour:
   uiBehav: {fileID: 0}
   viewMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   currentWP: 0
 --- !u!114 &114856771296942434
 MonoBehaviour:

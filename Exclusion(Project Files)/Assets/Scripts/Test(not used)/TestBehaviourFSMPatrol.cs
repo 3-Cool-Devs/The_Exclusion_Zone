@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class TestBehaviourFSMPatrol : TestBehaviourBase
 {
-    //private NavMeshAgent myAgent;
     
-    //
-    private void Awake()
+    void Awake()
     {
 		
     }
@@ -48,10 +46,6 @@ public class TestBehaviourFSMPatrol : TestBehaviourBase
         direction.y = 0;
 		Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), waypointRotationSpeed * Time.deltaTime);
 		Demon.transform.Translate (0, 0, Time.deltaTime * waypointSpeed);
-		if (Vector3.Distance(Player.transform.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast(Demon.transform.position, Player.transform.position, viewMask)) //|| isChasing == true)
-		{
-			uiBehav.hasBeenSpotted = true;
-		}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

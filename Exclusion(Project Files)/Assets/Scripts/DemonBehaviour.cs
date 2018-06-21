@@ -21,7 +21,7 @@ public class DemonBehaviour : MonoBehaviour
     public float demonNoticeFOV;
     public float demonSpeed = 1.5f;
     public float demonChaseSpeed = 2f;
-	public float demonDamage = 5f ;
+	public float demonDamage = 5f;
 	private float angleBetweenDemonAndPlayer;
     // variables that the waypoints uses
     public float wpAccuracy = 0f;
