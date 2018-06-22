@@ -6,12 +6,12 @@ public class TestBehaviourBase : StateMachineBehaviour
 {
     public GameObject Demon;
     public GameObject Player;
-	public Transform target;
 	public GameObject[] waypoints;
     public float waypointRange = 3.0f;
     public float waypointRotationSpeed = 1.0f;
     public float waypointSpeed = 2.0f;
 	GameObject NPC;
+	public Transform pathHolder;
 	public float chaseRotationSpeed = 2.0f;
 	public float chaseSpeed = 5.0f;
 	public float angle;
@@ -30,13 +30,15 @@ public class TestBehaviourBase : StateMachineBehaviour
     {
 
         Demon = animator.gameObject;
-		waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+		//waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
 		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
 
     }
     void Start () // Use this for initialization
     {
         //myAgent = GetComponent<NavMeshAgent>();
+		GetWaypoint();
+		pathHolder =
         currentWP = 0;
     }
     void Update () // Update is called once per frame
@@ -45,8 +47,11 @@ public class TestBehaviourBase : StateMachineBehaviour
 	}
     void GetWaypoint()
     {
-        GameObject[] waypoints = new GameObject [27];
-        waypoints[0] = FindObject<Waypoint>();
-
+		Vector3[] waypoints = new Vector3[pathHolder.childCount];
+		for (int i = 0; i < waypoints.Length; i++)
+		{
+			waypoints[i] = pathHolder.GetChild(i).position;
+			waypoints[i] = new Vector3(waypoints[i].x, Transform.position.y, waypoints[i].z);
+		}
     }
 }

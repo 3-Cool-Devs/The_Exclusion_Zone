@@ -92,13 +92,6 @@ public class DemonBehaviour : MonoBehaviour
 				this.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
 			}
         }
-		//if (Vector3.Distance(player.position, this.transform.position) > demonNoticeRange && (angle > demonNoticeFOV) && !Physics.Linecast(transform.position, player.position, viewMask) || isChasing == true)
-		//{
-			//isChasing = false;
-			
-			//uiBehav.hasBeenSpotted = false;
-			//StartCoroutine (ContinueChase());
-		//}
 		else
 		{
 			isPatroling = true;

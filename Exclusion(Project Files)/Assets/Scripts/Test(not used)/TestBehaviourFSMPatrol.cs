@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class TestBehaviourFSMPatrol : TestBehaviourBase
 {
-    void Awake()
-    {
-		
-    }
-    void Start() // Use this for initialization
-    {
-        
-    }
-    void Update() // Update is called once per frame
-    {
-
-    }
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
