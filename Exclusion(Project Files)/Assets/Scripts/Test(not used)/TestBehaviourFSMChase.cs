@@ -14,7 +14,7 @@ public class TestBehaviourFSMChase : TestBehaviourBase
     {
         var direction = Player.transform.position - Demon.transform.position;
         direction.y = 0;
-		Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
+		//Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
         if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
         {
             Demon.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);

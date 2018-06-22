@@ -19,17 +19,19 @@ public class TestBehaviourFSMPatrol : TestBehaviourBase
         }
 		if (Vector3.Distance (waypoints [currentWP].transform.position, Demon.transform.position) < waypointRange) 
         {
+			//Vector3 startPosition = pathHolder.GetChild(0).position;
+			//Vector3 previousPosition = startPosition;
             currentWP++;
             if(currentWP >= waypoints.Length)
             {
                 currentWP = 0;
             }
         }
-        //myAgent.SetDestination (waypoints [currentWP].transform.position); //or use this if on a navmesh
-		var direction = waypoints [currentWP].transform.position - Demon.transform.position;
-        direction.y = 0;
-		Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), waypointRotationSpeed * Time.deltaTime);
-		Demon.transform.Translate (0, 0, Time.deltaTime * waypointSpeed);
+        myAgent.SetDestination (waypoints [currentWP].transform.position); //or use this if on a navmesh
+		//var direction = waypoints [currentWP].transform.position - Demon.transform.position;
+        //direction.y = 0;
+		//Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), waypointRotationSpeed * Time.deltaTime);
+		//Demon.transform.Translate (0, 0, Time.deltaTime * waypointSpeed);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class TestBehaviourBase : StateMachineBehaviour
@@ -25,20 +26,19 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public float angleBetweenDemonAndPlayer;
 	public LayerMask viewMask;
 	public int currentWP;
-    //public NavMeshAgent myAgent;
+    public NavMeshAgent myAgent;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
         Demon = animator.gameObject;
-		//waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+		waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
 		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
+		myAgent = Demon.GetComponent<NavMeshAgent> ();
 
     }
     void Start () // Use this for initialization
     {
-        //myAgent = GetComponent<NavMeshAgent>();
 		GetWaypoint();
-		pathHolder =
         currentWP = 0;
     }
     void Update () // Update is called once per frame
@@ -47,11 +47,6 @@ public class TestBehaviourBase : StateMachineBehaviour
 	}
     void GetWaypoint()
     {
-		Vector3[] waypoints = new Vector3[pathHolder.childCount];
-		for (int i = 0; i < waypoints.Length; i++)
-		{
-			waypoints[i] = pathHolder.GetChild(i).position;
-			waypoints[i] = new Vector3(waypoints[i].x, Transform.position.y, waypoints[i].z);
-		}
+		//GameObject[] = new GameObject;
     }
 }
