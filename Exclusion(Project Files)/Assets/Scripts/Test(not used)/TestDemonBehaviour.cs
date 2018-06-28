@@ -31,6 +31,10 @@ public class TestDemonBehaviour : MonoBehaviour
 	{
 		return Player;
 	}
+    public GameObject[] GetWaypoints()
+    {
+        return waypoints;
+    }
 	void Start () // Use this for initialization
 	{
 		anim = GetComponent<Animator>();

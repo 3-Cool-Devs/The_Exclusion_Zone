@@ -17,8 +17,8 @@ public class TestBehaviourFSMChase : TestBehaviourBase
 		//Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
         if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
         {
-            Demon.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
-            //myAgent.SetDestination(target.position);
+            //Demon.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
+            myAgent.SetDestination(Player.transform.position);
         }
     }
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

@@ -19,8 +19,6 @@ public class TestBehaviourFSMPatrol : TestBehaviourBase
         }
 		if (Vector3.Distance (waypoints [currentWP].transform.position, Demon.transform.position) < waypointRange) 
         {
-			//Vector3 startPosition = pathHolder.GetChild(0).position;
-			//Vector3 previousPosition = startPosition;
             currentWP++;
             if(currentWP >= waypoints.Length)
             {
