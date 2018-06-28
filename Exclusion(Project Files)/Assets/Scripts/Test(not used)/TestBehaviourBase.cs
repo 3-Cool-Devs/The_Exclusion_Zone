@@ -18,6 +18,7 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public float chaseRotationSpeed = 2.0f;
 	public float chaseSpeed = 5.0f;
 	public float angle;
+    public float turnangle;
     public float demonRotation = 0.1f;
 	public float demonNoticeRange = 10f;
 	public float demonChaseRange = 5f;
@@ -38,9 +39,26 @@ public class TestBehaviourBase : StateMachineBehaviour
 		myAgent = Demon.GetComponent<NavMeshAgent> ();
 
     }
+    public int FindClosestWP() // the code finds the closest waypoint
+    {
+        if (waypoints.Length == 0)
+        {
+            return -1;
+        }
+        int closest = 0;
+        float lastDist = Vector3.Distance(Demon.transform.position, waypoints[currentWP].transform.position);
+        for (int i = 1; i < waypoints.Length; i++)
+        {
+            float thisDist = Vector3.Distance(Demon.transform.position, waypoints[i].transform.position);
+            if (lastDist > thisDist && i != currentWP)
+            {
+                closest = i;
+            }
+        }
+        return closest;
+    }
     void Start () // Use this for initialization
     {
-		
         currentWP = 0;
     }
     void Update () // Update is called once per frame

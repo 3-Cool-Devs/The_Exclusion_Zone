@@ -21,10 +21,10 @@ public class TestDemonBehaviour : MonoBehaviour
 	public float demonChaseRange = 5f;
 	public float demonNoticeFOV = 60;
 	public float demonSpeed = 1.5f;
-	public float demonChaseSpeed = 2f;
 	public float demonDamage = 5f;
 	public float angleBetweenDemonAndPlayer;
-	public UIBehaviour uiBehav;
+    public bool isLooking = false;
+    public UIBehaviour uiBehav;
 	public LayerMask viewMask;
 	public int currentWP;
 	public GameObject GetPlayer()
@@ -48,10 +48,18 @@ public class TestDemonBehaviour : MonoBehaviour
 		{
 			anim.SetBool ("doesSee", true);
             uiBehav.hasBeenSpotted = true;
-        } 
-		else 
-		{
-			anim.SetBool ("doesSee", false);
+        }
+        if (isLooking == true)
+        {
+            if (isLooking == false)
+            {
+
+            }
+        }
+       
+        else
+        {
+            anim.SetBool("doesSee", false);
             uiBehav.hasBeenSpotted = false;
         }
 	}

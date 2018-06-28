@@ -8,7 +8,6 @@ public class TestBehaviourFSMPatrol : TestBehaviourBase
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
 		base.OnStateEnter (animator, stateInfo, layerIndex);
-		Demon = animator.gameObject;
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 

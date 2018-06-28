@@ -14571,6 +14571,7 @@ MonoBehaviour:
   demonChaseSpeed: 2
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
+  isLooking: 0
   uiBehav: {fileID: 1472518541}
   viewMask:
     serializedVersion: 2
@@ -14585,11 +14586,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 240
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
