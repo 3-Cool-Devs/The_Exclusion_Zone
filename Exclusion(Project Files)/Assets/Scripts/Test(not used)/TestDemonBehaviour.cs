@@ -39,7 +39,7 @@ public class TestDemonBehaviour : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
     }
-	void Update () // Update is called once per frame
+	public void Update () // Update is called once per frame
 	{
         direction = Player.transform.position - Demon.transform.position; // distance between the player and the demon
         direction.y = 0;
@@ -48,15 +48,19 @@ public class TestDemonBehaviour : MonoBehaviour
 		{
 			anim.SetBool ("doesSee", true);
             uiBehav.hasBeenSpotted = true;
+			isLooking = true;
+			if (isLooking == true)
+			{
+				anim.SetBool ("hasSeen",true);
+				anim.SetBool("doesSee",false);
+				uiBehav.hasBeenSpotted = false;
+				isLooking = false;
+				if (isLooking == false) 
+				{
+					anim.SetBool ("hasSeen", false);
+				}
+			}
         }
-        if (isLooking == true)
-        {
-            if (isLooking == false)
-            {
-
-            }
-        }
-       
         else
         {
             anim.SetBool("doesSee", false);

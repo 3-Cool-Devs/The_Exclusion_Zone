@@ -15,18 +15,20 @@ public class TestBehaviourFSMChase : TestBehaviourBase
     {
         var direction = Player.transform.position - Demon.transform.position;
         direction.y = 0;
-		//Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
-        if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
-        {
-            //Demon.transform.Translate(0, 0, demonChaseSpeed * Time.deltaTime);
-            myAgent.SetDestination(Player.transform.position);
-        }
+		if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
+		{ 
+			myAgent.SetDestination (Player.transform.position);
+		} 
+		else 
+		{
+			isLooking = true;
+		}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        currentWP = FindClosestWP();
+		base.OnStateEnter (animator, stateInfo, layerIndex);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
@@ -35,7 +37,8 @@ public class TestBehaviourFSMChase : TestBehaviourBase
     //}
 
     // OnStateIK is called right after Animator.OnAnimatorIK(). Code that sets up animation IK (inverse kinematics) should be implemented here.
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    //
+    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
+	//{
+	//Demon.transform.rotation = Quaternion.Slerp (Demon.transform.rotation, Quaternion.LookRotation (direction), chaseRotationSpeed * Time.deltaTime);
     //}
 }

@@ -29,6 +29,7 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public float angleBetweenDemonAndPlayer;
 	public LayerMask viewMask;
 	public int currentWP;
+	public bool isLooking;
     public NavMeshAgent myAgent;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -37,7 +38,7 @@ public class TestBehaviourBase : StateMachineBehaviour
 		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
         waypoints = Demon.GetComponent<TestDemonBehaviour>().GetWaypoints();
 		myAgent = Demon.GetComponent<NavMeshAgent> ();
-
+		isLooking = Demon.GetComponent<TestDemonBehaviour>().isLooking;
     }
     public int FindClosestWP() // the code finds the closest waypoint
     {

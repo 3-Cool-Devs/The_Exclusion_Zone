@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: hasSeen
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -68,6 +68,44 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   currentWP: 0
+  isLooking: 0
+  myAgent: {fileID: 0}
+--- !u!114 &114439077562171266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b4307902ba72e74697a26fcd7474b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Demon: {fileID: 0}
+  Player: {fileID: 0}
+  waypoints: []
+  waypointRange: 3
+  waypointRotationSpeed: 1
+  waypointSpeed: 2
+  pathHolder: {fileID: 0}
+  pathHolderObject: {fileID: 0}
+  chaseRotationSpeed: 2
+  chaseSpeed: 5
+  angle: 0
+  turnangle: 0
+  demonRotation: 0.1
+  demonNoticeRange: 10
+  demonChaseRange: 5
+  demonNoticeFOV: 0
+  demonSpeed: 1.5
+  demonChaseSpeed: 2
+  demonDamage: 5
+  angleBetweenDemonAndPlayer: 0
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 0
+  currentWP: 0
+  isLooking: 0
   myAgent: {fileID: 0}
 --- !u!114 &114856771296942434
 MonoBehaviour:
@@ -131,7 +169,35 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   currentWP: 0
+  isLooking: 0
   myAgent: {fileID: 0}
+--- !u!1101 &1101046289362441274
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: doesSee
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: hasSeen
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102193897253759244}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0.25
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 1
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &1101244756669743820
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -272,7 +338,9 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101244756669743820}
-  m_StateMachineBehaviours: []
+  - {fileID: 1101046289362441274}
+  m_StateMachineBehaviours:
+  - {fileID: 114439077562171266}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
