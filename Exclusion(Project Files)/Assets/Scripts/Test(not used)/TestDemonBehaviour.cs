@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestDemonBehaviour : MonoBehaviour 
+public class TestDemonBehaviour : Singleton<TestDemonBehaviour>
 {
-	public GameObject Player;
+    
+   
+    public GameObject Player;
 	public Animator anim;
 	public GameObject Demon;
 	public GameObject[] waypoints;
@@ -41,6 +43,22 @@ public class TestDemonBehaviour : MonoBehaviour
     }
 	public void Update () // Update is called once per frame
 	{
+        switch (GameManager.instance.DemonState)
+        {
+            case GameState.FreeRoam:
+                MovementController();
+                VisionController();
+                break;
+            case GameState.Dialogue:
+                break;
+            case GameState.CreditScreen:
+                break;
+            case GameState.PauseScreen:
+                break;
+            case GameState.TitleScreen:
+                break;
+            default: break;
+        }
         direction = Player.transform.position - Demon.transform.position; // distance between the player and the demon
         direction.y = 0;
         angle = Vector3.Angle(direction, Demon.transform.forward); // The angle
@@ -67,4 +85,20 @@ public class TestDemonBehaviour : MonoBehaviour
             uiBehav.hasBeenSpotted = false;
         }
 	}
+
+    //Subscribes to our game events
+    void OnEnable()
+    {
+        GameEvents.OnDemonStateChange += OnDemonStateChange;
+    }
+    //Unsubscribes to our game events
+    void OnDisable()
+    {
+        GameEvents.OnDemonStateChange -= OnDemonStateChange;
+    }
+    void OnDemonStateChange(DemonState demonstate)
+    {
+        Debug.Log("DOG SOUND");
+
+    }
 }

@@ -14568,7 +14568,6 @@ MonoBehaviour:
   demonChaseRange: 5
   demonNoticeFOV: 60
   demonSpeed: 1.5
-  demonChaseSpeed: 2
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
   isLooking: 0
@@ -21036,6 +21035,62 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 1434e5cf89e37b0409be9b58fd2d1779, type: 3}
   m_PrefabInternal: {fileID: 1770789755}
+--- !u!1 &977557178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 977557181}
+  - component: {fileID: 977557180}
+  - component: {fileID: 977557179}
+  m_Layer: 0
+  m_Name: RadiationCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &977557179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 977557178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff56263516fafb4c8347ad36d7a6bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DB: {fileID: 0}
+  UI: {fileID: 1472518541}
+  radiationDamage: 1
+--- !u!65 &977557180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 977557178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.239103, y: 5.0525107, z: 17.308643}
+  m_Center: {x: -0.4921484, y: 2.0262554, z: 0.35808182}
+--- !u!4 &977557181
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 977557178}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.08, y: 0.54, z: -29.22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &978993010 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4515429222942450, guid: 76c476538ac9ff344b2a16cac84b83ff,
@@ -34721,6 +34776,10 @@ Prefab:
     - target: {fileID: 1243150775758742, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149201483044054, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
