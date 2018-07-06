@@ -6122,7 +6122,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 286513179}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 0, z: -11.13}
+  m_LocalPosition: {x: 7.18, y: 0, z: -14.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 133922983}
@@ -14557,17 +14557,9 @@ MonoBehaviour:
   - {fileID: 286513179}
   - {fileID: 1927985423}
   - {fileID: 986507469}
-  waypointRange: 3
-  waypointRotationSpeed: 5
-  waypointSpeed: 2
-  chaseRotationSpeed: 5
-  chaseSpeed: 5
   angle: 0
-  demonRotation: 0.1
   demonNoticeRange: 10
-  demonChaseRange: 5
   demonNoticeFOV: 60
-  demonSpeed: 1.5
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
   isLooking: 0
@@ -23000,7 +22992,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1063333263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84d3081d1f427245b92b197676b3577, type: 3}
+  m_Script: {fileID: 11500000, guid: c6314cc51c1c49a4d9f6843e65f264e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UIB: {fileID: 1472518541}
@@ -26626,7 +26618,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1245090863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: -23.32}
+  m_LocalPosition: {x: 7.33, y: 0, z: -19.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 133922983}
@@ -30933,7 +30925,7 @@ MonoBehaviour:
   hasKeyText: {fileID: 130874713}
   player: {fileID: 1260085667}
   playerCol: {fileID: 1260085673}
-  DB: {fileID: 652289237}
+  TDB: {fileID: 652289237}
 --- !u!4 &1474271758 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: debb145ece23b324a94fdfaa24449b8f, type: 3}
@@ -34779,7 +34771,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1149201483044054, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
@@ -40113,7 +40105,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1927985423}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 0, z: -5.49}
+  m_LocalPosition: {x: 7.35, y: 0, z: -10.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 133922983}

@@ -14,7 +14,7 @@ public class UIBehaviour : MonoBehaviour
 	public Text hasKeyText; // the text if you have the key
 	public GameObject player; 
 	public Collider playerCol;
-	public TestDemonBehaviour DB; // variable for the demon script
+	public TestDemonBehaviour TDB; // variable for the demon script
 	void Start () // Use this for initialization
     {
 		healthText.text = "Health:" + health.ToString(); // sets the health in the start frame to the health
@@ -39,7 +39,7 @@ public class UIBehaviour : MonoBehaviour
 		if (hasBeenSpotted == true)
 		{
 			detectionText.text = "Detected";
-			health -= DB.demonDamage * Time.deltaTime ;
+			health -= TDB.demonDamage * Time.deltaTime ;
 		}
 	}
 	public void HasOrNotKey() // function that controls the UI elements that tell you if you have the key or not 

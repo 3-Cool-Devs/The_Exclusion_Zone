@@ -8,7 +8,6 @@ public class TestBehaviourBase : StateMachineBehaviour
     public GameObject Demon;
     public GameObject Player;
     public GameObject[] waypoints;
-    //public Vector3[] waypoints;
     public float waypointRange = 3.0f;
     public float waypointRotationSpeed = 1.0f;
     public float waypointSpeed = 2.0f;
@@ -31,6 +30,7 @@ public class TestBehaviourBase : StateMachineBehaviour
 	public int currentWP;
 	public bool isLooking;
     public NavMeshAgent myAgent;
+    public TestDemonBehaviour TDB;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
@@ -38,7 +38,7 @@ public class TestBehaviourBase : StateMachineBehaviour
 		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
         waypoints = Demon.GetComponent<TestDemonBehaviour>().GetWaypoints();
 		myAgent = Demon.GetComponent<NavMeshAgent> ();
-		isLooking = Demon.GetComponent<TestDemonBehaviour>().isLooking;
+        TDB = Demon.GetComponent<TestDemonBehaviour>();
     }
     public int FindClosestWP() // the code finds the closest waypoint
     {
@@ -62,8 +62,4 @@ public class TestBehaviourBase : StateMachineBehaviour
     {
         currentWP = 0;
     }
-    void Update () // Update is called once per frame
-    {
-		
-	}
 }
