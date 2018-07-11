@@ -13,7 +13,7 @@ public class TestBehaviourFSMChase : TestBehaviourBase
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        var direction = Player.transform.position - Demon.transform.position;
+        var direction = Player.transform.position - Head.transform.position;
         direction.y = 0;
 		if (direction.magnitude < demonChaseRange) // if you enter it is chase range it chases you
 		{ 
@@ -23,6 +23,7 @@ public class TestBehaviourFSMChase : TestBehaviourBase
 		{
             TDB.isLooking = true;
             TDB.uiBehav.hasBeenSpotted = false;
+            PPB.profile.chromaticAberration.enabled = false;
         }
     }
 

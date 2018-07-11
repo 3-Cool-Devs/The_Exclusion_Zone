@@ -14,9 +14,9 @@ public class TestBehaviourFSMLook : TestBehaviourBase
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        TDB.Demon.transform.Rotate(0, 45 * Time.deltaTime, 0);
+        TDB.Demon.transform.Rotate(0, 360 * Time.deltaTime, 0);
         //TDB.Demon.transform.Rotate(0, -45 * Time.deltaTime, 0);
-        if (Vector3.Distance(Player.transform.position, Demon.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast(Demon.transform.position, Player.transform.position, viewMask))
+        if (Vector3.Distance(Player.transform.position, Head.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast(Head.transform.position, Player.transform.position, viewMask))
         {
             TDB.anim.SetBool("doesSee", true);
             TDB.uiBehav.hasBeenSpotted = true;

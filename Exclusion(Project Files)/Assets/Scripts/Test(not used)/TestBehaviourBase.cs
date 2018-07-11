@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.PostProcessing;
 using UnityEngine;
 
 public class TestBehaviourBase : StateMachineBehaviour
 {
+    
+    public PostProcessingBehaviour PPB;
     public GameObject Demon;
     public GameObject Player;
+    public GameObject Head;
     public GameObject[] waypoints;
     public float waypointRange = 3.0f;
     public float waypointRotationSpeed = 1.0f;
@@ -33,9 +37,10 @@ public class TestBehaviourBase : StateMachineBehaviour
     public TestDemonBehaviour TDB;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         Demon = animator.gameObject;
-		Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
+        PPB = Demon.GetComponent<TestDemonBehaviour>().GetPPB();
+        Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
+        Head = Demon.GetComponent<TestDemonBehaviour>().GetHead();
         waypoints = Demon.GetComponent<TestDemonBehaviour>().GetWaypoints();
 		myAgent = Demon.GetComponent<NavMeshAgent> ();
         TDB = Demon.GetComponent<TestDemonBehaviour>();

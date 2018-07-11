@@ -14526,7 +14526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2d6e8442ac61c4088066e32cd3b26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PPB: {fileID: 835045410}
   Player: {fileID: 1260085667}
+  Head: {fileID: 2074157080}
   anim: {fileID: 0}
   Demon: {fileID: 652289230}
   waypoints:
@@ -14562,6 +14564,7 @@ MonoBehaviour:
   demonNoticeFOV: 60
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
+  PPBEffect: 0.1
   isLooking: 0
   uiBehav: {fileID: 1472518541}
   viewMask:
@@ -34773,6 +34776,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4820988660660390, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.464
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb35913270b69ff4da0734f5d1c8cff8, type: 2}
   m_IsPrefabParent: 0
@@ -42652,6 +42659,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 1434e5cf89e37b0409be9b58fd2d1779, type: 3}
   m_PrefabInternal: {fileID: 1695684696}
+--- !u!1 &2074157080 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1996669635453768, guid: bb35913270b69ff4da0734f5d1c8cff8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1698501472}
 --- !u!1001 &2076609203
 Prefab:
   m_ObjectHideFlags: 0
