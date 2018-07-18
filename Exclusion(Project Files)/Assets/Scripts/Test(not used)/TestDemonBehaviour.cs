@@ -40,6 +40,10 @@ public class TestDemonBehaviour : MonoBehaviour
     {
         return waypoints;
     }
+    public LayerMask GetLayerMask()
+    {
+        return viewMask;
+    }
 	void Start () // Use this for initialization
 	{
 		anim = GetComponent<Animator>();

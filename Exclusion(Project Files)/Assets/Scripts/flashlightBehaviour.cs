@@ -24,9 +24,10 @@ public class flashlightBehaviour : MonoBehaviour
 
 	void Start ()
 	{
-		//isActive = true; //is the flashlight on at the start of the game?
-		batteryleft = 100f;	
-		flashLight.intensity = 5;
+        FlashlightOff();
+        //isActive = true; //is the flashlight on at the start of the game?
+        batteryleft = 100f;
+        flashLight.intensity = 0.9f;
 	}
 	
 	// Update is called once per frame
@@ -34,15 +35,19 @@ public class flashlightBehaviour : MonoBehaviour
 
 	{
 		if (Input.GetKeyDown (KeyCode.Mouse1) && flashLight.intensity > 0f) {
-			isActive = true;
-		}
+            FlashlightOn();
+        }
+
+        if (flashLight.intensity <= 0f)
+        {
+            FlashlightOff();
+        }
 
 		if (Input.GetKeyDown (KeyCode.Mouse1) && flashLight.enabled)
 			{
-			flashLight.enabled = false;
-				isActive = false;
-				batteryleft = batteryPercentage;
-			}
+            FlashlightOff();
+
+            }
 
 
 		if (isActive) 
@@ -51,11 +56,20 @@ public class flashlightBehaviour : MonoBehaviour
 			//isActive = true;
 			batteryPercentage = batteryleft;
 			batteryPercentage --;
-			flashLight.intensity -= 0.1f * Time.deltaTime;
+			flashLight.intensity -= 0.02f * Time.deltaTime;
 		} 
 	}
 		
+    void FlashlightOn()
+    {
+        isActive = true;
+        print("I'm On");
+    }
 
-
-
+    void FlashlightOff()
+    {
+        flashLight.enabled = false;
+        isActive = false;
+        batteryleft = batteryPercentage;
+    }
 }

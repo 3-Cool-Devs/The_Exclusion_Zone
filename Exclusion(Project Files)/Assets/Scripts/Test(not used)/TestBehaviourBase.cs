@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class TestBehaviourBase : StateMachineBehaviour
 {
-    
     public PostProcessingBehaviour PPB;
     public GameObject Demon;
     public GameObject Player;
@@ -24,7 +23,7 @@ public class TestBehaviourBase : StateMachineBehaviour
     public float turnangle;
     public float demonRotation = 0.1f;
 	public float demonNoticeRange = 10f;
-	public float demonChaseRange = 5f;
+	public float demonChaseRange = 10f;
 	public float demonNoticeFOV;
 	public float demonSpeed = 1.5f;
 	public float demonChaseSpeed = 2f;
@@ -42,8 +41,9 @@ public class TestBehaviourBase : StateMachineBehaviour
         Player = Demon.GetComponent<TestDemonBehaviour>().GetPlayer();
         Head = Demon.GetComponent<TestDemonBehaviour>().GetHead();
         waypoints = Demon.GetComponent<TestDemonBehaviour>().GetWaypoints();
-		myAgent = Demon.GetComponent<NavMeshAgent> ();
+		myAgent = Demon.GetComponent<NavMeshAgent>();
         TDB = Demon.GetComponent<TestDemonBehaviour>();
+        viewMask = Demon.GetComponent<TestDemonBehaviour>().GetLayerMask();
     }
     public int FindClosestWP() // the code finds the closest waypoint
     {
