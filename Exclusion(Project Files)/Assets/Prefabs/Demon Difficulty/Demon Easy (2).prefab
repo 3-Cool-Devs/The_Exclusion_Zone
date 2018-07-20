@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 114054818558052442}
   - component: {fileID: 195040007321682718}
   m_Layer: 0
-  m_Name: Demon Easy
+  m_Name: Demon Easy (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
