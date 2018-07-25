@@ -2069,7 +2069,7 @@ MonoBehaviour:
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
   PPBEffect: 0.1
-  isLooking: 1
+  isLooking: 0
   uiBehav: {fileID: 0}
   viewMask:
     serializedVersion: 2
