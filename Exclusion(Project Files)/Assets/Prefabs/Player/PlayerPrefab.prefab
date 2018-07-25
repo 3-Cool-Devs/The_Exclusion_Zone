@@ -69,7 +69,6 @@ GameObject:
   - component: {fileID: 4468798188613994}
   - component: {fileID: 20678658577020172}
   - component: {fileID: 124246343409441220}
-  - component: {fileID: 81484477443991356}
   - component: {fileID: 114411639442062646}
   m_Layer: 0
   m_Name: Armcam
@@ -345,12 +344,12 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294966783
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -386,7 +385,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -491,13 +490,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!81 &81484477443991356
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1119131704031270}
-  m_Enabled: 1
 --- !u!81 &81622192422675520
 AudioListener:
   m_ObjectHideFlags: 1
@@ -615,8 +607,8 @@ Light:
   m_SpotAngle: 35
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
-    m_Resolution: 1
+    m_Type: 2
+    m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -646,7 +638,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
-  m_Intensity: 13.98
+  m_Intensity: 5
   m_Range: 3.458521
   m_SpotAngle: 30
   m_CookieSize: 10

@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 101d0f4924c4fc049b824c28f63fbf16
-timeCreated: 1525926639
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -12,10 +10,16 @@ ModelImporter:
     2100000: Bad_Metal
     2100002: Cloth
     2100004: Pilow
+    2100006: defaultMat
     2300000: default
     3300000: default
     4300000: default
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bad_Metal
+    second: {fileID: 2100000, guid: 101d0f4924c4fc049b824c28f63fbf16, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,6 +38,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
