@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class EndZoneBehaviour : MonoBehaviour 
@@ -20,8 +18,15 @@ public class EndZoneBehaviour : MonoBehaviour
 		{
 			if(UIB.hasKey == true)
 			{
-                SceneManager.LoadScene("Endgame");
-			}
+                if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level_1"))
+                {
+                    SceneManager.LoadScene("Level_2");
+                }
+                if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level_2"))
+                {
+                    SceneManager.LoadScene("Endgame");
+                }
+            }
 		}
 	}
 }

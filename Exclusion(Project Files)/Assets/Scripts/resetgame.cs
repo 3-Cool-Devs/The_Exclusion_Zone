@@ -1,21 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class resetgame : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class resetgame : MonoBehaviour
+{
+	void Start () // Use this for initialization
+    {
 		
 	}
 	
-	// Update is called once per frame
-	void Update ()
+	void Update () // Update is called once per frame
+    {
+        ResetGame();
+	}
+    void ResetGame()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("game");
+            SceneManager.LoadScene("Level_1");
         }
-	}
+    }
 }
