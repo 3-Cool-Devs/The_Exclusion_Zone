@@ -3933,6 +3933,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114453422535342716, guid: d1887407f1e4b314281b6d0d23064b36,
+        type: 2}
+      propertyPath: pathHolder
+      value: 
+      objectReference: {fileID: 133922983}
+    - target: {fileID: 114743232685711600, guid: d1887407f1e4b314281b6d0d23064b36,
+        type: 2}
+      propertyPath: PPB
+      value: 
+      objectReference: {fileID: 1068539222}
+    - target: {fileID: 114743232685711600, guid: d1887407f1e4b314281b6d0d23064b36,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 966148771}
     - target: {fileID: 114743232685711600, guid: d1887407f1e4b314281b6d0d23064b36,
         type: 2}
       propertyPath: waypoints.Array.data[0]
@@ -4068,30 +4083,11 @@ Prefab:
       propertyPath: waypoints.Array.data[26]
       value: 
       objectReference: {fileID: 986507469}
-    - target: {fileID: 114453422535342716, guid: d1887407f1e4b314281b6d0d23064b36,
-        type: 2}
-      propertyPath: pathHolder
-      value: 
-      objectReference: {fileID: 133922983}
     - target: {fileID: 114743232685711600, guid: d1887407f1e4b314281b6d0d23064b36,
         type: 2}
       propertyPath: uiBehav
       value: 
       objectReference: {fileID: 1472518541}
-    - target: {fileID: 114743232685711600, guid: d1887407f1e4b314281b6d0d23064b36,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 966148771}
-    - target: {fileID: 114743232685711600, guid: d1887407f1e4b314281b6d0d23064b36,
-        type: 2}
-      propertyPath: PPB
-      value: 
-      objectReference: {fileID: 1068539222}
-    - target: {fileID: 1607996729273074, guid: d1887407f1e4b314281b6d0d23064b36, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1887407f1e4b314281b6d0d23064b36, type: 2}
   m_IsPrefabParent: 0
@@ -9485,7 +9481,7 @@ Transform:
   - {fileID: 1427878817}
   - {fileID: 577872966}
   m_Father: {fileID: 1949913677}
-  m_RootOrder: 63
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &844743258
 BoxCollider:
@@ -17436,6 +17432,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -86.689
       objectReference: {fileID: 0}
+    - target: {fileID: 114995461149481220, guid: 0e8da26a7e725f545ab2d0bdc08093b6,
+        type: 2}
+      propertyPath: UIB
+      value: 
+      objectReference: {fileID: 1472518541}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e8da26a7e725f545ab2d0bdc08093b6, type: 2}
   m_IsPrefabParent: 0
@@ -21390,6 +21391,7 @@ Transform:
   - {fileID: 2121506001}
   - {fileID: 214981714}
   - {fileID: 845986709}
+  - {fileID: 844743257}
   - {fileID: 924565062}
   - {fileID: 704490498}
   - {fileID: 261242113}
@@ -21403,7 +21405,6 @@ Transform:
   - {fileID: 1987638038}
   - {fileID: 168578376}
   - {fileID: 580060977}
-  - {fileID: 844743257}
   - {fileID: 915018754}
   - {fileID: 1949055134}
   - {fileID: 948125293}

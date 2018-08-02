@@ -7,7 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		if (other.CompareTag("Key")) // compares the tag that the object is named key
 		{
-			UIB.hasKey = true;
+			UIB.hasKey = true; // Turns on the 
 			other.gameObject.SetActive(false);
 		}
 	}

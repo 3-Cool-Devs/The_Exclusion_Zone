@@ -24,7 +24,7 @@ public class EndZoneBehaviour : MonoBehaviour
                 }
                 if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level_2"))
                 {
-                    SceneManager.LoadScene("Endgame");
+                    SceneManager.LoadScene("EndGame");
                 }
             }
 		}

@@ -63,7 +63,7 @@ MonoBehaviour:
   demonChaseRange: 5
   demonNoticeFOV: 60
   demonSpeed: 1.5
-  demonChaseSpeed: 2
+  demonChaseSpeed: 10
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
   viewMask:
@@ -103,7 +103,7 @@ MonoBehaviour:
   demonChaseRange: 5
   demonNoticeFOV: 0
   demonSpeed: 1.5
-  demonChaseSpeed: 2
+  demonChaseSpeed: 5
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
   viewMask:
@@ -170,7 +170,7 @@ MonoBehaviour:
   demonChaseRange: 5
   demonNoticeFOV: 60
   demonSpeed: 1.5
-  demonChaseSpeed: 2
+  demonChaseSpeed: 5
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
   viewMask:
