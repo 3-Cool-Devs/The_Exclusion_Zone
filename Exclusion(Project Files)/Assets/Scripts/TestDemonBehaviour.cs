@@ -19,6 +19,7 @@ public class TestDemonBehaviour : MonoBehaviour
 	public float demonNoticeFOV = 60;
 	public float demonDamage = 5f;
 	public float angleBetweenDemonAndPlayer;
+    public float demonChaseRange = 10f;
     public float PPBEffect = 0.1f;
     public bool isLooking;
     public UIBehaviour uiBehav;
@@ -58,7 +59,7 @@ public class TestDemonBehaviour : MonoBehaviour
         direction = Player.transform.position - Head.transform.position; // distance between the player and the demon
         direction.y = 0;
         angle = Vector3.Angle(direction, Head.transform.forward); // The angle
-        if (Vector3.Distance(Player.transform.position, Head.transform.position) < demonNoticeRange && angle < demonNoticeFOV && !Physics.Linecast(Head.transform.position, Player.transform.position, viewMask))
+        if (Vector3.Distance(Player.transform.position, Head.transform.position) < demonChaseRange && angle < demonNoticeFOV && !Physics.Linecast(Head.transform.position, Player.transform.position, viewMask))
         {
             anim.SetBool("doesSee", true);
             uiBehav.hasBeenSpotted = true;

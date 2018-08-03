@@ -19,7 +19,7 @@ public class TestBehaviourFSMChase : TestBehaviourBase
 		{ 
 			myAgent.SetDestination (Player.transform.position);
             myAgent.speed = demonChaseSpeed;
-            myAgent.acceleration = demonChaseSpeed;
+            myAgent.acceleration = demonAcceleration;
         } 
 		if (direction.magnitude > demonNoticeRange)
 		{

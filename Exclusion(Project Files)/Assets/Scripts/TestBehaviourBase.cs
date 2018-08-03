@@ -23,6 +23,7 @@ public class TestBehaviourBase : StateMachineBehaviour
     public float turnangle;
     public float demonRotation = 0.1f;
 	public float demonNoticeRange = 10f;
+    public float demonAcceleration = 20f;
 	public float demonChaseRange = 10f;
 	public float demonNoticeFOV;
 	public float demonSpeed = 1.5f;
