@@ -299,14 +299,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1133451381599474}
-  m_LocalRotation: {x: -0, y: 0.66351247, z: -0, w: 0.7481653}
-  m_LocalPosition: {x: -25.72, y: 1.63, z: 10.8}
+  m_LocalRotation: {x: -0, y: -0.029113855, z: -0, w: 0.99957615}
+  m_LocalPosition: {x: -15.57, y: -11.18, z: -55.06}
   m_LocalScale: {x: 0.68, y: 0.6799998, z: 0.6799998}
   m_Children:
   - {fileID: 4474145302899338}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 83.137, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -3.3370001, z: 0}
 --- !u!4 &4837952166916890
 Transform:
   m_ObjectHideFlags: 1
@@ -639,7 +639,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
-  m_Intensity: 5
+  m_Intensity: 4.97
   m_Range: 3.458521
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_WalkSpeed: 5
   m_RunSpeed: 10
   m_RunstepLenghten: 0.7
-  m_JumpSpeed: 10
+  m_JumpSpeed: 1
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:

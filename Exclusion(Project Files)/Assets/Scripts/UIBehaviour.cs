@@ -26,7 +26,14 @@ public class UIBehaviour : MonoBehaviour
 		HasSpottedOrNot ();
 		if (health < 0) 
 		{
-			SceneManager.LoadScene("game");
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level_1"))
+            {
+                SceneManager.LoadScene("Level_1");
+            }
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level_2"))
+            {
+                SceneManager.LoadScene("Level_2");
+            }
 		}
 	}
 	public void HasSpottedOrNot() // function that controls the health and damage that the player gets if he is in the FOV of the demon

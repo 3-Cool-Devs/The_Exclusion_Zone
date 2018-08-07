@@ -2068,6 +2068,7 @@ MonoBehaviour:
   demonNoticeFOV: 60
   demonDamage: 5
   angleBetweenDemonAndPlayer: 0
+  demonChaseRange: 10
   PPBEffect: 0.1
   isLooking: 0
   uiBehav: {fileID: 0}
