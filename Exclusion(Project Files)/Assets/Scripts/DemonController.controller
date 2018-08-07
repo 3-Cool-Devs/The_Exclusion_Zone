@@ -61,7 +61,7 @@ MonoBehaviour:
   demonRotation: 0.1
   demonNoticeRange: 10
   demonAcceleration: 15
-  demonChaseRange: 5
+  demonChaseRange: 10
   demonNoticeFOV: 60
   demonSpeed: 1.5
   demonChaseSpeed: 10
@@ -169,8 +169,8 @@ MonoBehaviour:
   turnangle: 0
   demonRotation: 0.1
   demonNoticeRange: 10
-  demonAcceleration: 20
-  demonChaseRange: 5
+  demonAcceleration: 10
+  demonChaseRange: 10
   demonNoticeFOV: 60
   demonSpeed: 1.5
   demonChaseSpeed: 5
